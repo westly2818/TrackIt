@@ -1,0 +1,172 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <!-- <div class="login">Testing</div> -->
+      <div style="display: flex;justify-content: space-between;">
+        <div>
+            Dashboard 
+        </div>
+        <div>
+          <ion-icon name="power" style="color:#2a7cf6" routerLink="/login"></ion-icon>
+        </div>
+      </div>
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="maincontainer">
+    <div class="subcontainer">
+      <div class="input">
+        <input type="number" placeholder="Enter the value" class="inputstyle" [(ngModel)]="dailyValue">
+        <div>
+          <button class="enter" (click)="enterFunction()">
+            <ion-icon name="send-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <div style="display: flex;flex-wrap: wrap; justify-content: space-between;">
+        <div class="row dataCards">
+          <div class="col col-7 dataCardvalue1">
+            <div class="ltd">
+              {{milkentered}} 
+            </div>
+            <div class="unit1">
+litres till date 
+            </div>
+          </div>
+          <div class="col col-5 dataCardicion">
+            <img style="width: 27px;" src="../../assets/icon/milking.png" alt="">
+          </div>
+        </div>
+        <div class="row dataCards">
+          <div class="col col-7 dataCardvalue1">
+            <div class="ltd">
+              {{milkentered}} 
+            </div>
+            <div class="unit1">
+Monthly Average
+            </div>
+          </div>
+          <div class="col col-5 dataCardicion">
+             <span>
+              <i class="fa fa-line-chart" aria-hidden="true"></i>
+             </span>
+          </div>
+        </div>
+        <div class="row dataCards">
+          <div class="col col-7 dataCardvalue1">
+            <div class="ltd">
+              {{milkentered}} 
+            </div>
+            <div class="unit1">
+Morning Average
+            </div>
+          </div>
+          <div class="col col-5 dataCardicion">
+             <span>
+              <img style="width: 27px;" src="../../assets/icon/sunrise.png" alt="">
+             </span>
+          </div>
+          </div>
+        <div class="row dataCards">
+          <div class="col col-7 dataCardvalue1">
+            <div class="ltd">
+              {{milkentered}}
+            </div>
+            <div class="unit1">
+Evening Average
+            </div>
+          </div>
+          <div class="col col-5 dataCardicion">
+             <span>
+              <img style="width: 27px;" src="../../assets/icon/sunset.png" alt="">
+             </span>
+          </div>
+        </div>
+<div class="dailyCard">
+ <div style="display: flex; justify-content: space-between;padding: 0px;">
+  <div class="dataCardvalue1" >
+    <div >
+      <div class="ltd">
+       {{morningValue}}
+      </div>
+      <div class="unit1">
+        Morn
+      </div>
+    </div>
+
+  </div>
+ </div>
+ <div class="vl"></div>
+
+ <div  style="display: flex; justify-content: space-between;padding: 0px;">
+  <div class="dataCardvalue1" >
+    <div >
+      <div class="ltd">
+       {{eveningValue}}
+      </div>
+      <div class="unit1">
+        Eve
+      </div> 
+    </div>
+
+  </div>
+ </div>
+ <div class="vl"></div>
+
+ <div style="display: flex; justify-content: space-between;padding: 0px;" >
+
+  <div class="dataCardvalue1" >
+    <div >
+      <div class="ltd">
+    {{totalDay}}
+      </div>
+      <div class="unit1" >
+        Total
+      </div>
+    </div>
+
+  </div>
+ </div>
+</div>
+      </div>
+    </div>
+    
+        <div class="graphcard">
+<div>
+  <div style="margin-right: 119px;
+  color: white;
+  font-family: inherit;
+  font-weight: 500;    padding: 7px;
+    font-size: 15px;">
+  Last Seven Days Analysis
+  </div>
+</div>
+<canvas id="myChart" class="graph"></canvas>
+
+        </div>
+  
+
+  </div>
+
+  
+</ion-content>
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="home">
+    <ion-icon name="play-circle"></ion-icon>
+    Dashboard
+  </ion-tab-button>
+  <ion-tab-button tab="radio">
+    <ion-icon name="radio"  (click)=" route('reports')"></ion-icon>
+    Reports
+  </ion-tab-button>
+  <ion-tab-button tab="library">
+    <ion-icon name="library" (click)=" route('accounts')"></ion-icon>
+    Accounts
+  </ion-tab-button>
+  <ion-tab-button tab="search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </ion-tab-button>
+</ion-tab-bar>

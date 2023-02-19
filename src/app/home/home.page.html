@@ -1,0 +1,33 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="login">Testing</div>
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-content [fullscreen]="true">
+  <div style=" min-height: 100%;width: auto;background-color:#57b4ff;display: flex;justify-content:center;align-items: center;">
+        <div id="card">
+          <div id="card-content">
+            <div id="card-title">
+              <h2>LOGIN</h2>
+              <!-- <div class="underline-title"></div> -->
+            </div>
+            <ion-item>
+              <ion-label position="floating">UserName</ion-label>
+              <ion-input placeholder="Enter text" [(ngModel)]="user" ></ion-input>
+            </ion-item>
+            <div style=" margin:20px 0px 0px 0px;">
+              <ion-item >
+                <ion-label position="floating">Password</ion-label>
+                <ion-input placeholder="Enter text" required type="Password"[(ngModel)]="pw"></ion-input>
+              </ion-item>
+            </div>
+            <div style="display: flex;justify-content: center;margin-top:10px">
+              <ion-button (click)="password()">login</ion-button> 
+            </div>
+          </div>
+        </div>
+      </div>
+</ion-content>

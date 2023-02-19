@@ -1,0 +1,26 @@
+table, th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  } 
+   
+  tr:nth-child(even) {background-color: #f2f2f2;}
+
+  th {
+    background-color: #04AA6D;
+    color: white;
+  }
+  .tableCard{
+    margin: 5px 5px;
+    overflow-x: hidden;
+
+  }
+  table{
+    width:100%;
+  }
+  .scroll{
+    display: flex!important;
+    flex-direction: column!important;
+    overflow-y: scroll!important;
+    height: calc(100vh - 130px)!important;
+  }

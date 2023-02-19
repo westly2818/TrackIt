@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <!-- <div class="login">Testing</div> -->
+      <div style="display: flex;justify-content: space-between;">
+        <div>
+          Reports
+        </div>
+        <div>
+          <ion-icon name="power" style="color:#2a7cf6" routerLink="/login"></ion-icon>
+        </div>
+      </div>
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="tableCard scroll ">
+  <table >  
+    <tr>
+      <th style="min-width: 115px;">Date</th>
+     <th>Morning</th>  
+       <th>Evening</th>  
+      <th>Total</th>  
+
+       
+    </tr>  
+    <tr *ngFor="let ele of data"> 
+      <td>{{ ele.date }}</td>  
+       <td>{{ele.total }}</td>  
+       <td>{{ ele.name }}</td>  
+       <td>{{ele.mark }}</td>  
+    </tr>  
+ </table>  
+</div>
+</ion-content>
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="home">
+    <ion-icon name="play-circle"  (click)=" route('dashboard')"></ion-icon>
+    Dashboard
+  </ion-tab-button>
+  <ion-tab-button tab="radio">
+    <ion-icon name="radio" ></ion-icon>
+    Reports
+  </ion-tab-button>
+  <ion-tab-button tab="library">
+    <ion-icon name="library" (click)=" route('accounts')"></ion-icon>
+    Accounts 
+  </ion-tab-button>
+  <ion-tab-button tab="search">
+    <ion-icon name="search" (click)=" route('search')"></ion-icon>
+    Search
+  </ion-tab-button>
+</ion-tab-bar>

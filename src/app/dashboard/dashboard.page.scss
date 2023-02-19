@@ -1,0 +1,145 @@
+.loginflex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2a7cf6;
+}
+
+.line-1 {
+    height: 1px;
+    background: black;
+}
+
+.ion-input {
+    --background: rgb(234 232 207);
+
+}
+.maincontainer{
+    height: 100%;
+    width: auto;
+    background-color: #fff;
+    padding: 10px 10px;
+}
+.subcontainer{
+    min-height: 50%;
+    max-width: 100%;
+    background-color: #89c3ee;
+    // width: 100%;    
+    margin: 8px 1px;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px #b1a7a7d9;
+}
+hr{
+    line-height: 3px;
+    border:1px solid #eee
+}
+
+.input{
+    max-height: 75px;
+    min-height: 75px;
+    border-bottom: 2px solid #d8d8d8;
+    display:flex ;
+}
+.inputstyle{
+    background-color: #eee;
+    width: 80%;
+    margin: 7px;
+    padding: 17px;
+    border-radius: 6px;
+    outline: 0;
+    border: 0;
+}
+:focus.inputstyle{
+    border:2px solid #2a7cf6
+}
+.enter{
+    max-height: 75px;
+    min-height: 62px;
+    min-width: 43%;
+    background-color: #2a7cf6;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    padding: 19px 25px;
+    margin: 5px 11px;
+
+}
+.dataCards{
+    width: 45%;
+    height: 56px;
+    background-color: #fff;
+    border-radius: 5px;
+    // box-shadow: 10px 10px 5px #777777;
+    margin: 9px 8px;
+    // border: 2px solid #dfe2e7;
+}
+.dataCardvalue1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui;
+    font-weight: 500;
+    padding: 0;
+}
+.dataCardicion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3e5f7eb;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+.graphcard{
+    width: 100%;
+    min-height: 40%;
+    background-color: #89c3ee;
+    border-radius: 5px;
+    // box-shadow: 10px 10px 5px #777777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 5px #b1a7a7d9;
+    flex-direction: column; 
+}
+.graph{
+    height: 196px !important;
+    width: 90% !important;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+.ltd{
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #389effe3;
+    font-weight: bolder;
+    text-align: center;
+}
+.unit1{
+    font-size: 11px;
+    font-family: unset;
+    color: darkgrey;
+}
+.dailyCard{
+    height: 59px;
+    width: 100%;
+    background-color: #fff;
+    margin: 8px 7px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.vl {
+    border-left: 3px solid #dde5dd;
+    height: 49px;
+    margin-top: 4px;
+  }
