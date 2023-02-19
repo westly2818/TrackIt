@@ -25,7 +25,7 @@
     padding: 10px 10px;
 }
 .subcontainer{
-    min-height: 50%;
+    min-height: 56%;
     max-width: 100%;
     background-color: #89c3ee;
     // width: 100%;    
@@ -46,7 +46,7 @@ hr{
 }
 .inputstyle{
     background-color: #eee;
-    width: 80%;
+    width: 100%;
     margin: 7px;
     padding: 17px;
     border-radius: 6px;
@@ -64,9 +64,9 @@ hr{
     color: #fff;
     border: 0;
     outline: 0;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 19px 25px;
-    margin: 5px 11px;
+    margin: 5px 13px;
 
 }
 .dataCards{
@@ -107,6 +107,7 @@ hr{
     justify-content: center;
     box-shadow: 4px 4px 5px #b1a7a7d9;
     flex-direction: column; 
+    margin-top: 10px;
 }
 .graph{
     height: 196px !important;
@@ -143,3 +144,30 @@ hr{
     height: 49px;
     margin-top: 4px;
   }
+  a i {
+    transition: all 0.3s linear;
+}
+
+a:hover i {
+    transform: scale(1.5);
+}
+.trash:hover {
+    color: rgb(202, 48, 48);
+}
+.delete-button{
+    color: white;
+    background-color: red;
+}
+.custom-btn{
+    width: 46%;
+    /* height: 56%; */
+    margin: 7px -1px;
+    height: 46px;
+    border-radius: 9px;
+    background-color: #2a7cf6;
+    color: white;
+}
+
+  
+  .custom-btn:active{background-color:rgb(255, 255, 255);color:#2a7cf6}
+  

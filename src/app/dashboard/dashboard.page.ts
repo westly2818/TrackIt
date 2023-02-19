@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { withLatestFrom } from 'rxjs';
 import * as moment from 'moment';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -21,7 +22,7 @@ export class DashboardPage implements OnInit {
   eveningValue=0
   totalDay=0
   time:any
-  constructor(private Routingdashboard:Router) { }
+  constructor(private Routingdashboard:Router,private alertController: AlertController) { }
 
 
   ngOnInit() {
@@ -108,6 +109,30 @@ this.dailyValue=null
   route(page:any){
 
     this.Routingdashboard.navigate([`${page}`])
+  }
+
+  async confirmDelete(get:any) {
+    console.log(get,'data')
+    const alert = await this.alertController.create({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to delete this item?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Delete',
+          cssClass:'delete-button',
+          handler: () => {
+            console.log('delete')
+          },
+        },
+      ],
+    });
+    alert.style.cssText = '--background: #c4f7ff';
+    await alert.present();
   }
 resetDbData(){
 this.morningValue+=5

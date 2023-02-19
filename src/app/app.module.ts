@@ -16,7 +16,7 @@ export function highchartsModules() {
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    NgChartsModule,ChartModule, HighchartsChartModule
+    NgChartsModule,ChartModule, HighchartsChartModule,
   ],
   exports:[
   ],
