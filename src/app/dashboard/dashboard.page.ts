@@ -5,6 +5,7 @@ import { Chart } from 'chart.js';
 import { withLatestFrom } from 'rxjs';
 import * as moment from 'moment';
 import { AlertController } from '@ionic/angular';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -22,7 +23,8 @@ export class DashboardPage implements OnInit {
   eveningValue=0
   totalDay=0
   time:any
-  constructor(private Routingdashboard:Router,private alertController: AlertController) { }
+  closeResult: string | undefined;
+  constructor(private Routingdashboard:Router,private alertController: AlertController,private modalService: NgbModal) { }
 
 
   ngOnInit() {
@@ -137,6 +139,10 @@ this.dailyValue=null
 resetDbData(){
 this.morningValue+=5
 }
+openLg(content: any) {
+  this.modalService.open(content, { size: 'lg' });
+}
+
 //  loop=setInterval(() => this.resetDbData(), 5000)
 }
 

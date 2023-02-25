@@ -1,5 +1,5 @@
 table, th, td {
-    padding: 15px;
+    padding: 11px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   } 
@@ -9,6 +9,8 @@ table, th, td {
   th {
     background-color: #04AA6D;
     color: white;
+    position: sticky;
+    top:0;
   }
   .tableCard{
     margin: 5px 5px;
@@ -19,8 +21,30 @@ table, th, td {
     width:100%;
   }
   .scroll{
-    display: flex!important;
-    flex-direction: column!important;
-    overflow-y: scroll!important;
-    height: calc(100vh - 130px)!important;
+  
+    display: flex !important;
+    flex-direction: column !important;
+    /* overflow-y: scroll !important; */
+    /* height: calc(100vh - 130px) !important; */
+    height: 90%;
+    border: 2px solid #d2c8c8;
+
+  }
+  .datepickerDate{
+    width: 348px;
+    height: 51px;
+    background-color: #f3ebeb;
+    border: 1px solid #ccc;
+    margin: 6px 8px;
+  }
+  .btn-clear{
+    background-color: #2a7cf6;
+    color: #fff;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    padding: 2px;
+  }
+  ::placeholder.btn-clear{
+    text-transform: capitalize;
   }

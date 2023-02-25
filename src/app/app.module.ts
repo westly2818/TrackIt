@@ -10,13 +10,18 @@ import more from 'highcharts/highcharts-more.src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgChartsModule } from 'ng2-charts';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 export function highchartsModules() {
   return [stock, more];
   }
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    NgChartsModule,ChartModule, HighchartsChartModule,
+    NgChartsModule,ChartModule, HighchartsChartModule,  MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   exports:[
   ],
