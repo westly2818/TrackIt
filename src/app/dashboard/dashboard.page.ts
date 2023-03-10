@@ -6,6 +6,7 @@ import { withLatestFrom } from 'rxjs';
 import * as moment from 'moment';
 import { AlertController } from '@ionic/angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiHttpService } from '../services/api-http.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -23,19 +24,27 @@ export class DashboardPage implements OnInit {
   eveningValue=0
   totalDay=0
   time:any
+  litresTilldate=0
+  MonthlyAvg=0
+  morningAvg=0
+  eveningAvg=0
+  eveningCustom:any
+  morningCustom:any
+  datechoosed:any
   closeResult: string | undefined;
-  constructor(private Routingdashboard:Router,private alertController: AlertController,private modalService: NgbModal) { }
+todaysData:any=[]
+  constructor(private Routingdashboard:Router,private alertController: AlertController,private modalService: NgbModal,private apiservice:ApiHttpService) { }
 
 
   ngOnInit() {
-   
+ 
     this.Chart = new Chart('myChart', {
       type: 'bar',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July'],
+        labels: [],
         datasets: [{
           label: 'litres',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          data: [],
           backgroundColor: [
      '#32CD32','#E55451'
           ],
@@ -86,31 +95,111 @@ export class DashboardPage implements OnInit {
         }
       }
     });
+    this.getGraphdata()
+    this.morng_eveng_data()
+    this.getMonthlydata()
+    // console.log(this.Chart.data)
   }
-  enterFunction(){
-    if(this.morningValue==0){
-      this.morningValue+=this.dailyValue
-      this.totalDay+= this.dailyValue
-this.dailyValue=null
+
+
+  getGraphdata(){
+    let query={"startDate":moment().subtract(7,'day').startOf('day').format("YYYY-MM-DD HH:mm:ss"),"endDate":moment().endOf('day').format("YYYY-MM-DD HH:mm:ss")}
+
+    let data=this.apiservice.get(query).subscribe((ele:any)=>{
+ele.data.forEach((element:any) => {
+
+  let date=moment(element.timestamp).format('DD-MM')
+  let addeddata=Number(element.morning_litre)+Number(element.evening_litre)
+  this.Chart.data.labels.push(date)
+  this.Chart.data.datasets[0].data.push(Number(addeddata))
+
+});
+    
+    })
+  }
+  getMonthlydata(){
+    let query={"startDate":moment().startOf('month').format("YYYY-MM-DD HH:mm:ss"),"endDate":moment().endOf('month').format("YYYY-MM-DD HH:mm:ss")}
+
+    let data=this.apiservice.get(query).subscribe((ele:any)=>{
+var morningCount=0
+var eveningCount=0
+var morningLitres=0
+var eveningLitres=0
+
+ele.data.forEach((element:any) => {
+  if(element.morning_litre!=null)morningLitres+=Number(element.morning_litre) ;morningCount++
+
+  if(element.morning_litre!=null)eveningLitres+=Number(element.evening_litre) ; eveningCount++
+
+  // this.Chart.data.datasets[0].data.push(Number(addeddata))
+
+});
+this.litresTilldate=Number( (Number(morningLitres) + Number(eveningLitres)).toFixed(2))
+this.MonthlyAvg=Number( Number(this.litresTilldate/ele.data.length).toFixed(2))
+this.morningAvg=Number(Number(morningLitres/morningCount).toFixed(2))
+this.eveningAvg=Number(Number(eveningLitres/eveningCount).toFixed(2))
+
+    
+    })
+  }
+  async dataentry(){
+    let insertdata={'litre':this.dailyValue}
+   if(this.todaysData.length===0){
+   
+     (await this.apiservice.insert(insertdata)).subscribe((res:any)=>{
+      console.log(res)
+     this.morng_eveng_data()
+     this. getMonthlydata()
+    })
+   }
+   else{
+    if(this.todaysData[0].morning_litre===null || this.todaysData[0].evening_litre===null){
+      (await this.apiservice.insert(insertdata)).subscribe((res:any)=>{
+        console.log(res)
+        this.morng_eveng_data()
+        this. getMonthlydata()
+       
+      })
 
     }
     else{
-      if(this.eveningValue==0){
-        this.eveningValue+=this.dailyValue
-        this.totalDay+= this.dailyValue
-        this.dailyValue=null
-      }
-      else{
-        alert('alerady entered for the day')
-      }
-
-
+      alert('already entered  ')
     }
+   }
+     
+ 
+this.dailyValue=null
 
+
+  }
+  async morng_eveng_data(){
+    this.todaysData=[]
+    let query={"startDate":moment().startOf('day').format("YYYY-MM-DD HH:mm:ss"),
+    "endDate":moment().endOf('day').format("YYYY-MM-DD HH:mm:ss")}
+this.apiservice.get(query).subscribe((obj:any)=>{
+  if(obj.data.length>0){
+    this.morningValue=obj.data[0].morning_litre
+    this.eveningValue=obj.data[0].evening_litre
+    this.totalDay=Number(this.morningValue)+Number(this.eveningValue)
+  this.todaysData.push(obj.data[0])
+
+
+  }
+  else{
+    this.morningValue=0
+    this.eveningValue=0
+    this.totalDay=0
+  }
+
+
+
+
+})
   }
   route(page:any){
 
-    this.Routingdashboard.navigate([`${page}`])
+    this.Routingdashboard.navigate([page])
+    // this.Chart.destroy()
   }
 
   async confirmDelete(get:any) {
@@ -128,7 +217,22 @@ this.dailyValue=null
           text: 'Delete',
           cssClass:'delete-button',
           handler: () => {
-            console.log('delete')
+            if(this.todaysData.length>0){
+              let reqObj:any={}
+            reqObj['id']=  this.todaysData[0].id
+              if(get=='morn'){
+                reqObj['time']='morning_litre'
+              }
+              else{
+                reqObj['time']='evening_litre'
+              }
+              this.apiservice.delete(reqObj).subscribe((ele:any)=>{
+                if(ele.status==='success'){
+                  this.morng_eveng_data()
+                }
+              })
+            }
+            console.log('deleted')
           },
         },
       ],
@@ -136,9 +240,11 @@ this.dailyValue=null
     alert.style.cssText = '--background: #c4f7ff';
     await alert.present();
   }
-resetDbData(){
-this.morningValue+=5
-}
+  customData(){
+    console.log(this.eveningCustom,'=============')
+    this.eveningCustom=null
+  }
+
 openLg(content: any) {
   this.modalService.open(content, { size: 'lg' });
 }

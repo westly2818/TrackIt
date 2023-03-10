@@ -13,6 +13,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material'
+import { HttpClientModule } from '@angular/common/http';
+import { ApiHttpService } from './services/api-http.service';
 export function highchartsModules() {
   return [stock, more];
   }
@@ -21,11 +24,12 @@ export function highchartsModules() {
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     NgChartsModule,ChartModule, HighchartsChartModule,  MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
   ],
   exports:[
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy ,},ApiHttpService
   
   ],
   bootstrap: [AppComponent],

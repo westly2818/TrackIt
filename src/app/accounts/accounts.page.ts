@@ -14,7 +14,7 @@ milkRate:any=34
   constructor(private Routingdashboard:Router) { }
 
   ngOnInit() {
-    new Chart("myChart", {
+    new Chart("mypie", {
       type: "pie",
       data: {
         labels:  ["Earned","Expenditure"],

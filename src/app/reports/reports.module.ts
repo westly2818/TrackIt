@@ -9,6 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { ReportsPage } from './reports.page';
+import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material'
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ReportsPage } from './reports.page';
     ReportsPageRoutingModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    NgxDaterangepickerMd.forRoot()
   ],
   declarations: [ReportsPage]
 })

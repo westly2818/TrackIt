@@ -2,65 +2,83 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PickerController } from '@ionic/angular';
 import * as moment from 'moment';
+import { ApiHttpService } from '../services/api-http.service';
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.page.html',
   styleUrls: ['./reports.page.scss'],
 })
 export class ReportsPage implements OnInit {
- data:any=[
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-  {"name":"30","mark":"45","date":"15-02-2022","total":"15"},
-  {"name":"40","mark":"55","date":"15-02-2022","total":"15"},
-]
-customPickerOption = {
-  buttons: [{
-  text: 'Clear',
-     handler: () => this.myForm.controls['myDateCustom'].setValue(null)}]
-  }  
-myDate:any
-  platform: any;
-  startDatechoosed:boolean=false
-  date: any;
-  startDate:any;
-  endDate:any;
-  seconddate:any;
-  myForm: any;
-  constructor(private Routingdashboard:Router,public pickerCtrl: PickerController) { }
-  
-  ngOnInit() {
-
-
+  data: any = []
+  customPickerOption = {
+    buttons: [{
+      text: 'Clear',
+      handler: () => this.myForm.controls['myDateCustom'].setValue(null)
+    }]
   }
-  fromDate(){
-    this.startDatechoosed=true
-    if(this.date !=null){
-      this.startDate=this.date[0]
-      this.date.length > 1 ? this.endDate=this.date[this.date.length-1]:this.endDate='nodata'
-      console.log(this.startDate,this.endDate,'date1')
-      this.date=null
+  myDate: any
+  platform: any;
+  startDatechoosed: boolean = false
+  date: any;
 
-    }
- 
+  seconddate: any;
+  myForm: any;
+  selecteddate: any;
+  startDate: any = moment().startOf('month').format("YYYY-MM-DD HH:mm:ss")
+  endDate: any = moment().endOf('month').format("YYYY-MM-DD HH:mm:ss")
+  constructor(private Routingdashboard: Router, public pickerCtrl: PickerController, private apiservice: ApiHttpService) { }
+
+  ngOnInit() {
+    this.selecteddate = { startDate: moment().subtract(3, 'days').startOf('day').toDate(), endDate: moment().endOf('day').toDate() }
+    this.getMonthlydata()
+  }
+  getMonthlydata() {
+    this.data=[]
+    let query = { "startDate": this.startDate, "endDate": this.endDate }
+
+    let newdata = this.apiservice.get(query).subscribe((ele: any) => {
+      let tabledata = ele.data
+      for (let ele of tabledata) {
+
+
+        let morn = 0
+        let even = 0
+
+        var tableObj: any = { "date": moment(ele.timestamp).format("DD-MM-YYYY") }
+
+        if (ele.morning_litre == null) {
+          tableObj['morning'] = 0
+          morn = 0
+        }
+        else {
+          tableObj['morning'] =Number( ele.morning_litre)
+          morn = Number(ele.morning_litre)
+        }
+        if (ele.evening_litre == null) {
+          tableObj['evening'] = 0
+          even = 0
+        }
+        else {
+          tableObj['evening'] = Number(ele.evening_litre)
+          even = Number(ele.evening_litre)
+        }
+
+        tableObj['total'] = morn + even
+
+        this.data.push(tableObj)
+      }
+
+
+    })
+  }
+  datePicker(date: any) {
+    let start = date['startDate']['$d']
+    let end = date['endDate']['$d']
+    this.startDate=moment(start).subtract(330,'minutes').format("YYYY-MM-DD HH:mm:ss")
+    this.endDate=moment(end).subtract(330,'minutes').format("YYYY-MM-DD HH:mm:ss")
+    this.getMonthlydata()
+    console.log(start, end, 'date')
+
   }
 
   customPickerOptions: any = {
@@ -69,8 +87,8 @@ myDate:any
       handler: () => this.myForm.controls['myDate'].setValue(null)
     }]
   }
-  
-  route(page:any){
+
+  route(page: any) {
 
     this.Routingdashboard.navigate([`${page}`])
   }

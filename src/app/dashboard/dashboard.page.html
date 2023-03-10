@@ -20,7 +20,7 @@
       <div class="input">
         <input type="number" placeholder="Enter the value" class="inputstyle" [(ngModel)]="dailyValue">
         <div>
-          <button class="enter" (click)="enterFunction()">
+          <button class="enter" (click)="dataentry()">
             <ion-icon name="send-outline"></ion-icon>
           </button>
         </div>
@@ -29,7 +29,7 @@
         <div class="row dataCards">
           <div class="col col-7 dataCardvalue1">
             <div class="ltd">
-              {{milkentered}}
+              {{litresTilldate}}
             </div>
             <div class="unit1">
               litres till date
@@ -42,7 +42,7 @@
         <div class="row dataCards">
           <div class="col col-7 dataCardvalue1">
             <div class="ltd">
-              {{milkentered}}
+              {{MonthlyAvg}}
             </div>
             <div class="unit1">
               Monthly Average
@@ -57,7 +57,7 @@
         <div class="row dataCards">
           <div class="col col-7 dataCardvalue1">
             <div class="ltd">
-              {{milkentered}}
+              {{morningAvg}}
             </div>
             <div class="unit1">
               Morning Average
@@ -72,7 +72,7 @@
         <div class="row dataCards">
           <div class="col col-7 dataCardvalue1">
             <div class="ltd">
-              {{milkentered}}
+              {{eveningAvg}}
             </div>
             <div class="unit1">
               Evening Average
@@ -183,14 +183,14 @@
       </ion-item>
       <ion-item class="modalvalue">
         <ion-label>Evening</ion-label>
-        <ion-input placeholder="In litres"></ion-input>
+        <ion-input placeholder="In litres" [(ngModel)]="eveningCustom"></ion-input>
       </ion-item>
 
 
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Save</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Close click')" (click)="customData()">Save</button>
 
     </div>
   </ng-template>
