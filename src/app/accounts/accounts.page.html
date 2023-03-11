@@ -18,19 +18,26 @@
 <ion-content>
 <div class="main-cont">
 <div class="inputs">
-  <input class="inputExp" type="number" placeholder="enter a value">
-  <button class="btn btn-primary enterbtn">Enter</button>
+  <div>
 
+  <input class="inputExp" type="number" placeholder="Enter Your Expenditures" [(ngModel)]="amountEntered">
+  <!-- <button class="btn btn-primary enterbtn">Enter</button>
+   -->
+    <button class="enter" (click)="enterExpenditure()">
+      <ion-icon name="send-outline"></ion-icon>
+    </button>
+   </div>
+  
 </div>
 
 
   <div class="card">
 
  <div class="innerCard">
-Earnings:
+Earnings: <span style="color: rgb(17 210 98);font-weight: 400;font-family: sans-serif;font-weight: 600;"> {{earned}}</span>
  </div>
   <div class="innerCard">
-  Expenditures:
+  Expenditures: <span style="color: rgb(255 50 58);font-weight: 400;font-family: sans-serif;font-weight: 600;"> {{spent}}</span>
      </div>
   </div>
 

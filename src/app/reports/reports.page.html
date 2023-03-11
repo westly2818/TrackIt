@@ -14,21 +14,24 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<app-loaders></app-loaders>
 
 <ion-content>
-  <!-- <div style="display: flex; justify-content: space-evenly; margin: 10px;" >
-    <div>
-      <input type="date" style="border-radius: 5px;
-      outline: 0;
-      border: 2px solid #2a7cf6;">
-    </div>
-    <div>To</div>
-    <div>
-      <input type="date"style=" border-radius: 5px;outline: 0;border: 2px solid #2a7cf6;" onfocus="(this.type = 'date')"  id="date">
-    </div>
-    <button class="btn-clear"> clear</button>
-  </div> -->
-  <input type="" ngxDaterangepickerMd [(ngModel)]="selecteddate" placeholder="selecteddate" (change)="datePicker($event)" class="form-control"/>
+<div>
+  <div class="topdiv">
+
+<div class="topdivfordate">
+  Select Date
+  <input   type="" ngxDaterangepickerMd [(ngModel)]="selecteddate"  [locale]="{ format: 'DD-MM-YYYY'}"
+   placeholder="selecteddate" (change)="datePicker($event)" class="form-control"/>
+
+</div>
+  <div style="text-align: center;">
+    Total Litres in 
+      {{days}}
+   Days:<span style="color: rgb(50, 132, 255);font-weight: 400;font-family: sans-serif;font-weight: 600;">{{TotalLitres}}  </span>
+  </div>
+</div>
 
 <div class="tableCard scroll ">
   <table >  
@@ -48,6 +51,8 @@
     </tr>  
  </table>  
 </div>
+</div>
+
 </ion-content>
 <ion-tab-bar slot="bottom">
   <ion-tab-button tab="home">

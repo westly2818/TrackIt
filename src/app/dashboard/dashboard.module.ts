@@ -9,8 +9,9 @@ import { DashboardPage } from './dashboard.page';
 import { NgChartsModule } from 'ng2-charts';
 import { AppModule } from '../app.module';
 import { HomePageModule } from '../home/home.module';
+import { LoadersComponent } from '../loaders/loaders.component';
 @NgModule({
-  declarations: [DashboardPage]
+  declarations: [DashboardPage,LoadersComponent]
 ,
   imports: [
     CommonModule,
@@ -20,5 +21,8 @@ import { HomePageModule } from '../home/home.module';
     NgChartsModule,
     HomePageModule
   ],
+  exports:[
+    LoadersComponent
+  ]
 })
 export class DashboardPageModule {}

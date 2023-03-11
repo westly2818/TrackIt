@@ -52,6 +52,10 @@
   .graph{
     aspect-ratio: 3/3;
     background-color: #89c3ee8f;
+    box-shadow: 10px 10px 5px #d3cccc;
+    // background-color: rgba(137, 195, 238, 0.5607843137);
+    border-radius: 6px;
+
   }
 .enterbtn{
   margin: 2px 8px;
@@ -65,4 +69,18 @@
   height: 323px;
   width: 323px;
   padding: 14px;
+}
+.enter{
+  min-width: 19%;
+  background-color: #2a7cf6;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  padding: 12px 25px;
+  height: 42px;
+  margin: 0px 11px;
+  position: relative;
+  top: 3px;
+
 }

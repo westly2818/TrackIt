@@ -48,3 +48,22 @@ table, th, td {
   ::placeholder.btn-clear{
     text-transform: capitalize;
   }
+  ::ng-deep .form-control{
+    width: 70%;
+  }
+  .topdivfordate{
+    display: flex;
+    justify-content: space-around;
+    margin: 9px 12px;
+    /* margin-bottom: 10px; */
+    padding-top: 7px;
+    align-items: center;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 500;
+  }
+  .topdiv{
+    background: #ebebeb;
+    margin: 5px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 500;
+  }

@@ -10,6 +10,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { ReportsPage } from './reports.page';
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material'
+import { LoadersComponent } from '../loaders/loaders.component';
+// import { DashboardPageModule } from 'TrackIt/src/app/dashboard/dashboard.module';
+import { DashboardPageModule } from '../dashboard/dashboard.module';
 
 @NgModule({
   imports: [
@@ -20,7 +23,9 @@ import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material'
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd.forRoot(),
+    // LoadersComponent
+    DashboardPageModule
   ],
   declarations: [ReportsPage]
 })

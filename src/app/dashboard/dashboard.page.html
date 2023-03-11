@@ -14,6 +14,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<app-loaders></app-loaders>
 <ion-content>
   <div class="maincontainer">
     <div class="subcontainer">
@@ -163,7 +164,10 @@
           Last Seven Days Analysis
         </div>
       </div>
-      <canvas id="myChart" class="graph"></canvas>
+      <!-- <ng-container *ngIf="Chart.data.datasets[0]"> -->
+        <canvas id="myChart" class="graph"></canvas>
+
+      <!-- </ng-container> -->
 
     </div>
 
@@ -176,14 +180,14 @@
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <input class="modalinput" type="text" placeholder="dd-mm-yyyy">
+      <input class="modalinput" type="date" placeholder="dd-mm-yyyy" [(ngModel)]="datechoosed">
       <ion-item class="modalvalue">
         <ion-label>Morning</ion-label>
-        <ion-input placeholder="In litres"></ion-input>
+        <ion-input type="number" placeholder="In litres" [(ngModel)]="morningCustom"></ion-input>
       </ion-item>
       <ion-item class="modalvalue">
         <ion-label>Evening</ion-label>
-        <ion-input placeholder="In litres" [(ngModel)]="eveningCustom"></ion-input>
+        <ion-input type="number" placeholder="In litres" [(ngModel)]="eveningCustom"></ion-input>
       </ion-item>
 
 
@@ -197,6 +201,7 @@
 
 
 </ion-content>
+
 <ion-tab-bar slot="bottom">
   <ion-tab-button tab="home">
     <ion-icon name="play-circle"></ion-icon>
