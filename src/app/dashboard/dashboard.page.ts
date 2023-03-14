@@ -372,8 +372,12 @@ resolve(true)
     this.modalService.open(content, { size: 'lg' });
   }
 
-  ngOndestroy() {
-
+  refresh(){
+    this.morng_eveng_data()
+    this.getGraphdata()
+    this.getMonthlydata()
+    console.log('called');
+    
   }
 
 }

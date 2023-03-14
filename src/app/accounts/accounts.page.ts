@@ -104,6 +104,11 @@ this.bgcolor.push('#FFCCCB')
           })
 
   }
+  
+  refresh(){
+ this.calc()
+  }
+
   route(page:any){
 
     this.Routingdashboard.navigate([`${page}`])
