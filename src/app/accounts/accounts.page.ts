@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import moment from 'moment';
 import { ApiHttpService } from '../services/api-http.service';
+import { UtislService } from '../utisl.service';
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.page.html',
@@ -10,18 +11,22 @@ import { ApiHttpService } from '../services/api-http.service';
 })
 export class AccountsPage implements OnInit {
 
-
+  PageIn:boolean=true
 milkRate:any=34
  earned:any=0
  spent:number=0
  amountEntered:any
 datas:any=[]
 bgcolor:any=[]
-  constructor(private Routingdashboard:Router,private apiservice:ApiHttpService) { }
+
+  constructor(private Routingdashboard:Router,private apiservice:ApiHttpService,private loaders:UtislService) { }
 
   ngOnInit() {
-  
+
+    this.loaders.setLoader(true)
     this.calc()
+    this.piechart()
+
   }
 
  async enterExpenditure(){
@@ -63,7 +68,9 @@ bgcolor:any=[]
       }
     });
     console.log(pie.data.datasets)
-  },3000)
+    this.loaders.setLoader(false)
+
+  },2000)
   }
   calc(){
     this.spent=0
@@ -95,7 +102,6 @@ this.bgcolor.push('#FFCCCB')
       this.earned=tofixedData
       
           })
-    this.piechart()
 
   }
   route(page:any){

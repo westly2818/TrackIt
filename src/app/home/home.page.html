@@ -6,28 +6,37 @@
     </ion-title>
   </ion-toolbar>
 </ion-header> -->
-<ion-content [fullscreen]="true">
-  <div style=" min-height: 100%;width: auto;background-color:#57b4ff;display: flex;justify-content:center;align-items: center;">
-        <div id="card">
-          <div id="card-content">
-            <div id="card-title">
-              <h2>LOGIN</h2>
-              <!-- <div class="underline-title"></div> -->
-            </div>
-            <ion-item>
-              <ion-label position="floating">UserName</ion-label>
-              <ion-input placeholder="Enter text" [(ngModel)]="user"  style="background-color: aliceblue;"></ion-input>
-            </ion-item>
-            <div style=" margin:20px 0px 0px 0px;">
-              <ion-item >
-                <ion-label position="floating">Password</ion-label>
-                <ion-input placeholder="Enter text" required type="Password"[(ngModel)]="pw" style="background-color: aliceblue;"></ion-input>
+<router-outlet></router-outlet>
+
+
+  <ion-content [fullscreen]="true">
+  
+
+    <div style=" min-height: 100%;width: auto;background-color:#57b4ff;display: flex;justify-content:center;align-items: center;">
+          <div id="card">
+            <div id="card-content">
+              <div id="card-title">
+                <h2>LOGIN</h2>
+                <!-- <div class="underline-title"></div> -->
+              </div>
+              <ion-item>
+                <ion-label position="floating">UserName</ion-label>
+                <ion-input placeholder="Enter text" [(ngModel)]="user"  style="background-color: aliceblue;"></ion-input>
               </ion-item>
-            </div>
-            <div style="display: flex;justify-content: center;margin-top:10px">
-              <ion-button (click)="password()">login</ion-button> 
+              <div style=" margin:20px 0px 0px 0px;">
+                <ion-item >
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input placeholder="Enter text" required type="Password"[(ngModel)]="pw" style="background-color: aliceblue;"></ion-input>
+                </ion-item>
+              </div>
+              <div style="display: flex;justify-content: center;margin-top:10px">
+                <ion-button (click)="password()">login</ion-button> 
+              </div>
             </div>
           </div>
         </div>
-      </div>
-</ion-content>
+        <ng-container *ngIf="id!=null">
+          <a routerLink="/dashboard"></a>
+        </ng-container>
+  </ion-content>
+  

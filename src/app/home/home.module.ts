@@ -10,6 +10,7 @@ import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import stock from 'highcharts/modules/stock.src';
 import more from 'highcharts/highcharts-more.src';
+
 export function highchartsModules() {
   return [stock, more];
   }

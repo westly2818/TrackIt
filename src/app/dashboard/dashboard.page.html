@@ -7,7 +7,7 @@
           Dashboard
         </div>
         <div>
-          <ion-icon name="power" style="color:#2a7cf6" routerLink="/login"></ion-icon>
+          <ion-icon name="power" style="color:#2a7cf6" routerLink="/login" (click)="logout()"></ion-icon>
         </div>
       </div>
 
@@ -165,7 +165,7 @@
         </div>
       </div>
       <!-- <ng-container *ngIf="Chart.data.datasets[0]"> -->
-        <canvas id="myChart" class="graph"></canvas>
+        <canvas id="mybarchart" class="graph"></canvas>
 
       <!-- </ng-container> -->
 
@@ -180,7 +180,9 @@
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <input class="modalinput" type="date" placeholder="dd-mm-yyyy" [(ngModel)]="datechoosed">
+      <input style="    border-radius: 5px;
+      outline: 0;
+      border: 0;" class="modalinput" placeholder="Select Date" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" [(ngModel)]="datechoosed">
       <ion-item class="modalvalue">
         <ion-label>Morning</ion-label>
         <ion-input type="number" placeholder="In litres" [(ngModel)]="morningCustom"></ion-input>
@@ -202,21 +204,44 @@
 
 </ion-content>
 
-<ion-tab-bar slot="bottom">
-  <ion-tab-button tab="home">
+<ion-tab-bar style="background: #e2e2e2;" slot="bottom">
+  <div style="    display: flex;
+  justify-content: space-between;
+  width: 80%;">
+  <!-- <ion-tab-button tab="home">
     <ion-icon name="play-circle"></ion-icon>
     Dashboard
-  </ion-tab-button>
-  <ion-tab-button tab="radio">
+  </ion-tab-button> -->
+  <div [ngClass]="{'activeTab': PageIn==true, 'inactiveTab': PageIn==false}"  style="display: flex;
+  flex-direction: column;">
+    <i style="font-size: 27px;position: relative;
+    top: 3px;" class="fa fa-home" aria-hidden="true"></i>
+    <span>
+      Dashboard
+
+    </span>
+  </div>
+  <!-- <ion-tab-button tab="radio">
     <ion-icon name="radio" (click)=" route('reports')"></ion-icon>
     Reports
-  </ion-tab-button>
-  <ion-tab-button tab="library">
+  </ion-tab-button> -->
+  <div style="display: flex;
+  flex-direction: column;padding-top: 6px;">
+    <i style="font-size: 21px;" class="fa fa-database" aria-hidden="true" (click)=" route('reports')"></i>
+    Reports
+  </div>
+
+  <!-- <ion-tab-button tab="library">
     <ion-icon name="library" (click)=" route('accounts')"></ion-icon>
     Accounts
-  </ion-tab-button>
-  <ion-tab-button tab="search">
-    <ion-icon name="search"></ion-icon>
-    Search
-  </ion-tab-button>
+  </ion-tab-button> -->
+  <div style="display: flex;
+  flex-direction: column; padding-top: 6px;">
+    <i style="font-size: 21px;" class="fa fa-usd" aria-hidden="true" (click)=" route('accounts')"></i>
+    Accounts
+  </div>
+
+  </div>
+
+
 </ion-tab-bar>

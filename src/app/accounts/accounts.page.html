@@ -14,7 +14,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<app-loaders></app-loaders>
 <ion-content>
 <div class="main-cont">
 <div class="inputs">
@@ -46,7 +46,7 @@ Earnings: <span style="color: rgb(17 210 98);font-weight: 400;font-family: sans-
   </div>
 </div>
 </ion-content>
-<ion-tab-bar slot="bottom">
+<!-- <ion-tab-bar slot="bottom">
   <ion-tab-button tab="home">
     <ion-icon name="play-circle" (click)=" route('dashboard')"></ion-icon>
     Dashboard
@@ -63,4 +63,38 @@ Earnings: <span style="color: rgb(17 210 98);font-weight: 400;font-family: sans-
     <ion-icon name="search" ></ion-icon>
     Search
   </ion-tab-button>
+</ion-tab-bar> -->
+
+<ion-tab-bar style="background: #e2e2e2;" slot="bottom">
+  <div style="    display: flex;
+  justify-content: space-between;
+  width: 80%;">
+  <!-- <ion-tab-button tab="home">
+    <ion-icon name="play-circle"></ion-icon>
+    Dashboard
+  </ion-tab-button> -->
+  <div style="display: flex;
+  flex-direction: column;">
+    <i style="font-size: 27px;position: relative;
+    top: 3px;" class="fa fa-home" aria-hidden="true" (click)=" route('dashboard')"></i>
+    <span>
+      Dashboard
+
+    </span>
+  </div>
+
+  <div  style="display: flex;
+  flex-direction: column;padding-top: 6px;">
+    <i style="font-size: 21px;" class="fa fa-database" aria-hidden="true" (click)=" route('reports')"></i>
+    Reports
+  </div>
+  <div  [ngClass]="{'activeTab': PageIn==true, 'inactiveTab': PageIn==false}" style="display: flex;
+  flex-direction: column; padding-top: 6px;">
+    <i style="font-size: 21px;" class="fa fa-usd" aria-hidden="true"></i>
+    Accounts
+  </div>
+
+  </div>
+
+
 </ion-tab-bar>

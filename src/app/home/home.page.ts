@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { UtislService } from '../utisl.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,28 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  auth:boolean=false
+  auth:boolean=true
   user:any
   pw:any
   cred:any=[
-    {'id':'test','pw':1234},
-    {'id':'sanjay','pw':1234},
+    {'id':'drsfarm','pw':1234},
+    {'id':'wesy','pw':1234},
   ]
+id:any;
+pass:any;
+  constructor(private toastController: ToastController,private Routingdashboard:Router,private home:UtislService) {}
 
-  constructor(private toastController: ToastController,private Routingdashboard:Router) {}
+  
+  async ngOnInit() {
+
+ const authToken = localStorage.getItem('authToken');
+if (authToken) {
+  // Perform automatic login using the stored authentication token
+   this.Routingdashboard.navigate(['dashboard'])
+}
+
+
+  }
   async presentToast(data:any) {
     let toast
     if(data==true){
@@ -57,10 +71,12 @@ export class HomePage {
     let filter=this.cred.filter((ele:any)=>{
       return ele.id==this.user && ele.pw==this.pw
     })
+    let userSession=filter[0]
 
     if(filter.length>0){
-    this.auth=true
+   localStorage.setItem('authToken', 'abc123');
     this.Routingdashboard.navigate(['dashboard'])
+    
     this.presentToast(true)
     }
     else{
@@ -69,5 +85,6 @@ export class HomePage {
 
 
     }
+    
   }
   }

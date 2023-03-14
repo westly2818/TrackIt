@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { AccountsPageRoutingModule } from './accounts-routing.module';
 
 import { AccountsPage } from './accounts.page';
-
+import { DashboardPageModule } from '../dashboard/dashboard.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AccountsPageRoutingModule
+    AccountsPageRoutingModule,
+    DashboardPageModule
   ],
   declarations: [AccountsPage]
 })

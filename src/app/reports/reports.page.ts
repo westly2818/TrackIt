@@ -27,11 +27,13 @@ export class ReportsPage implements OnInit {
   seconddate: any;
   myForm: any;
   selecteddate: any;
+  PageIn: boolean = true;
   startDate: any = moment().startOf('month').format("YYYY-MM-DD HH:mm:ss")
   endDate: any = moment().endOf('month').format("YYYY-MM-DD HH:mm:ss")
   constructor(private Routingdashboard: Router, public pickerCtrl: PickerController, private apiservice: ApiHttpService,private loaders:UtislService) { }
 
   ngOnInit() {
+    
     this.loaders.setLoader(true)
     this.selecteddate = { startDate: moment().subtract(3, 'days').startOf('day').toDate(), endDate: moment().endOf('day').toDate() }
     this.getMonthlydata()

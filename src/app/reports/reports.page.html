@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<div class="tableCard scroll ">
+<div  style="height: 533px;" class="tableCard scroll ">
   <table >  
     <tr>
       <th style="min-width: 115px;">Date</th>
@@ -54,21 +54,45 @@
 </div>
 
 </ion-content>
-<ion-tab-bar slot="bottom">
-  <ion-tab-button tab="home">
-    <ion-icon name="play-circle"  (click)=" route('dashboard')"></ion-icon>
+
+<ion-tab-bar style="background: #e2e2e2;" slot="bottom">
+  <div style="    display: flex;
+  justify-content: space-between;
+  width: 80%;">
+  <!-- <ion-tab-button tab="home">
+    <ion-icon name="play-circle"></ion-icon>
     Dashboard
-  </ion-tab-button>
-  <ion-tab-button tab="radio">
-    <ion-icon name="radio" ></ion-icon>
+  </ion-tab-button> -->
+  <div style="display: flex;
+  flex-direction: column;">
+    <i style="font-size: 27px;position: relative;
+    top: 3px;" class="fa fa-home" aria-hidden="true" (click)=" route('dashboard')"></i>
+    <span>
+      Dashboard
+
+    </span>
+  </div>
+  <!-- <ion-tab-button tab="radio">
+    <ion-icon name="radio" (click)=" route('reports')"></ion-icon>
     Reports
-  </ion-tab-button>
-  <ion-tab-button tab="library">
+  </ion-tab-button> -->
+  <div [ngClass]="{'activeTab': PageIn==true, 'inactiveTab': PageIn==false}" style="display: flex;
+  flex-direction: column;padding-top: 6px;">
+    <i style="font-size: 21px;" class="fa fa-database" aria-hidden="true"></i>
+    Reports
+  </div>
+
+  <!-- <ion-tab-button tab="library">
     <ion-icon name="library" (click)=" route('accounts')"></ion-icon>
-    Accounts 
-  </ion-tab-button>
-  <ion-tab-button tab="search">
-    <ion-icon name="search" (click)=" route('search')"></ion-icon>
-    Search
-  </ion-tab-button>
+    Accounts
+  </ion-tab-button> -->
+  <div style="display: flex;
+  flex-direction: column; padding-top: 6px;">
+    <i style="font-size: 21px;" class="fa fa-usd" aria-hidden="true" (click)=" route('accounts')"></i>
+    Accounts
+  </div>
+
+  </div>
+
+
 </ion-tab-bar>
